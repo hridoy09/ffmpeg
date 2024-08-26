@@ -100,39 +100,57 @@ private function processVideo($request, $uploadVideo)
 }
 
 private function getResolutions($resolution)
-{
-    $resolutions = [];
-
-    // Determine the available resolutions based on the original video resolution
-    switch ($resolution) {
-        case '1920x1080':
-            $resolutions = [
-                '1080' => '1920x1080',
-                '720' => '1280x720',
-                '480' => '854x480',
-                '360' => '480x360'
-            ];
-            break;
-        case '1280x720':
-            $resolutions = [
-                '720' => '1280x720',
-                '480' => '854x480',
-                '360' => '480x360'
-            ];
-            break;
-        case '854x480':
-            $resolutions = [
-                '480' => '854x480',
-                '360' => '480x360'
-            ];
-            break;
-        case '480x360':
-            $resolutions = [
-                '360' => '480x360'
-            ];
-            break;
+    {
+        $resolutions = [];
+    
+        switch ($resolution) {
+            case '7680x4320': // 8K
+                $resolutions = [
+                    '4320' => '7680x4320',
+                    '2160' => '3840x2160',
+                    '1440' => '2560x1440',
+                    '1080' => '1920x1080',
+                    '720' => '1280x720',
+                    '480' => '640x480'
+                ];
+                break;
+            case '3840x2160': // 4K
+                $resolutions = [
+                    '3840x2160' => '3840x2160',
+                    '1440' => '2560x1440',
+                    '1080' => '1920x1080',
+                    '720' => '1280x720',
+                    '480' => '640x480'
+                ];
+                break;
+            case '2560x1440': // 2K
+                $resolutions = [
+                    '1440' => '2560x1440',
+                    '1080' => '1920x1080',
+                    '720' => '1280x720',
+                    '480' => '640x480'
+                ];
+                break;
+            case '1920x1080': // Full HD
+                $resolutions = [
+                    '1080' => '1920x1080',
+                    '720' => '1280x720',
+                    '480' => '640x480'
+                ];
+                break;
+            case '1280x720': // HD
+                $resolutions = [
+                    '720' => '1280x720',
+                    '480' => '640x480'
+                ];
+                break;
+            case '640x360': // SD
+                $resolutions = [
+                    '480' => '640x480'
+                ];
+                break;
+        }
+    
+        return $resolutions;
     }
-
-    // Return the array of supported resolutions
-    return $resolutions;
-}
+    
